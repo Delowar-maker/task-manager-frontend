@@ -1,9 +1,7 @@
+import MasterLayout from "../components/masterLayout/MasterLayout";
+
 const DashboardPage = () => {
-  return (
-    <div>
-      <h1>Dashboard</h1>
-    </div>
-  );
+  return <MasterLayout></MasterLayout>;
 };
 
 export default DashboardPage;
