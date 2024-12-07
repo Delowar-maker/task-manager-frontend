@@ -1,4 +1,4 @@
-﻿/* Line Progress
+﻿﻿/*Line Progress*/
 .LoadingOverlay {
     position:absolute;
     display:block;
@@ -101,78 +101,6 @@
         right: -8%;
     }
 
-    100% {
-        left: 107%;
-        right: -8%;
-    }
-} */
-
-
-
-/* Line Progress */
-.LoadingOverlay {
-    position: absolute;
-    display: block;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
-    cursor: pointer;
-    z-index: 500000 !important;
-    background-color: rgba(255, 255, 255, 0.2);
-}
-
-.Line-Progress .indeterminate {
-    background-color: #cb0c9f;
-}
-
-.Line-Progress .indeterminate:before,
-.Line-Progress .indeterminate:after {
-    content: "";
-    position: fixed;
-    height: 3px;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    background-color: inherit;
-    will-change: left, right;
-    z-index: -1 !important;
-}
-
-.Line-Progress .indeterminate:before {
-    animation: indeterminate 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
-}
-
-.Line-Progress .indeterminate:after {
-    animation: indeterminate-short 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
-    animation-delay: 1.15s;
-}
-
-/* Indeterminate Animation */
-@keyframes indeterminate {
-    0% {
-        left: -35%;
-        right: 100%;
-    }
-    60% {
-        left: 100%;
-        right: -90%;
-    }
-    100% {
-        left: 100%;
-        right: -90%;
-    }
-}
-
-@keyframes indeterminate-short {
-    0% {
-        left: -200%;
-        right: 100%;
-    }
-    60% {
-        left: 107%;
-        right: -8%;
-    }
     100% {
         left: 107%;
         right: -8%;

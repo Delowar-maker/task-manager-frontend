@@ -1,4 +1,4 @@
-/* .icon-nav{
+.icon-nav{
     padding: 6px;
     transition: 0.3s;
     color: #606060;
@@ -99,8 +99,8 @@
 
 
 .nav-logo {
-    width: auto;
-    height: 30px;
+    width: 1px;
+    height: 2px;
 }
 
 
@@ -142,7 +142,7 @@
 
 /* Responsive */
 
-/* @media (max-width: 339.98px) {
+@media (max-width: 339.98px) {
     .side-nav-open {
         width: 0;
         position: fixed;
@@ -271,141 +271,6 @@
 
 }
 
-@media (min-width: 1200px) { */
+@media (min-width: 1200px) {
 
-/* } */ 
-
-
-/* Icon Navigation */
-.icon-nav {
-    padding: 6px;
-    transition: color 0.3s, padding 0.3s;
-    color: #606060;
-}
-.icon-nav:hover {
-    color: #363B64;
-}
-.icon-nav:active {
-    border-radius: 50%;
-    padding: 8px;
-    color: #363B64;
-    background: rgba(0, 0, 0, 0.16);
-}
-
-/* Icon Images */
-.icon-nav-img, .icon-nav-img-lg {
-    border-radius: 50%;
-    object-fit: cover;
-}
-.icon-nav-img {
-    width: 45px;
-    height: 45px;
-}
-.icon-nav-img-lg {
-    width: 85px;
-    height: 85px;
-}
-
-/* Sidebar Navigation */
-.side-nav-open, .side-nav-close {
-    padding-top: 70px;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    overflow-x: hidden;
-    transition: width 0.3s;
-    background-color: #ffffff;
-    border-right: 1px solid rgba(0, 0, 0, 0.075);
-    scrollbar-color: #CCCCCC #F5F5F5;
-    scrollbar-width: thin;
-}
-.side-nav-open {
-    width: 240px;
-}
-.side-nav-close {
-    width: 0;
-}
-
-/* Scrollbar Styles */
-.side-nav-open::-webkit-scrollbar,
-.side-nav-close::-webkit-scrollbar {
-    width: 10px;
-}
-.side-nav-open::-webkit-scrollbar-track-piece,
-.side-nav-close::-webkit-scrollbar-track-piece {
-    background-color: #F5F5F5;
-}
-.side-nav-open::-webkit-scrollbar-thumb:vertical,
-.side-nav-close::-webkit-scrollbar-thumb:vertical {
-    height: 30px;
-    border-radius: 4px;
-    background: #CCCCCC;
-}
-
-/* Content */
-.content, .content-expand {
-    margin-top: 80px;
-    transition: margin-left 0.3s;
-}
-.content {
-    margin-left: 240px;
-}
-.content-expand {
-    margin-left: 0;
-}
-
-/* Navigation Logo */
-.nav-logo {
-    height: 30px;
-    width: auto;
-}
-
-/* Sidebar Items */
-.side-bar-item {
-    display: block;
-    padding: 12px 5px;
-    width: 100%;
-    transition: background-color 0.2s, border-left 0.2s;
-}
-.side-bar-item:hover {
-    border-left: 4px solid #CB0C9F;
-    background-color: #F3D9EC;
-}
-.side-bar-item:hover .side-bar-item-icon,
-.side-bar-item:hover .side-bar-item-caption {
-    color: #363B64;
-}
-.side-bar-item-active {
-    border-left: 4px solid #CB0C9F;
-    background-color: #F3D9EC;
-}
-
-/* Sidebar Item Elements */
-.side-bar-item-icon {
-    font-size: 18px;
-    margin: 0 10px;
-    font-weight: 500;
-    color: #363B64;
-}
-.side-bar-item-caption {
-    font-family: 'Poppins', sans-serif;
-    font-size: 13px;
-    margin-left: 5px;
-    font-weight: 500;
-    color: #363B64;
-}
-
-/* Responsive Design */
-@media (max-width: 991.98px) {
-    .side-nav-open {
-        width: 0;
-    }
-    .side-nav-close {
-        width: 180px;
-    }
-    .content, .content-expand {
-        margin-left: 0;
-        width: 100%;
-    }
 }
