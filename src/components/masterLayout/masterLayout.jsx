@@ -1,48 +1,137 @@
-import Container from "react-bootstrap/Container";
-import Navbar from "react-bootstrap/Navbar";
+import { useState } from "react";
+import { Button, Container, Modal, Navbar, Offcanvas } from "react-bootstrap";
 import {
+  AiOutlineCheckCircle,
+  AiOutlineClose,
+  AiOutlineEdit,
   AiOutlineLogout,
   AiOutlineMenuUnfold,
   AiOutlineUser,
 } from "react-icons/ai";
+import { BsHourglass, BsListNested } from "react-icons/bs";
+import { MdOutlineCancelPresentation } from "react-icons/md";
 import { NavLink } from "react-router-dom";
+import cat from "../../assets/images/cat.jpeg";
 
-const MasterLayout = () => {
+const MasterLayout = (props) => {
+  const [showSidebar, setShowSidebar] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  const toggleSidebar = () => setShowSidebar((prev) => !prev);
+  const toggleDropdown = () => setShowDropdown((prev) => !prev);
+
   return (
-    <Navbar className="fixed-top px-0 shadow-sm">
-      <Container fluid={true}>
-        <Navbar.Brand className="d-flex">
-          <a className="icon-nav m-3 h5 ">
-            <AiOutlineMenuUnfold />
-          </a>
-          <h1>Task Manager</h1>
-        </Navbar.Brand>
-        <div className="float-right h-auto d-flex">
-          <div className="user-dropdown">
-            <img
-              className="icon-nav-img icon-nav"
-              src="holder.js/171x180"
-              alt=""
+    <>
+      {/* Navbar */}
+      <Navbar bg="light" expand="lg" fixed="top" className="shadow-sm">
+        <Container fluid>
+          <Navbar.Brand className="d-flex align-items-center">
+            <AiOutlineMenuUnfold
+              style={{
+                fontSize: "30px",
+                cursor: "pointer",
+                marginRight: "10px",
+              }}
+              onClick={toggleSidebar}
             />
-            <div className="user-dropdown-content ">
-              <div className="mt-4 text-center">
-                <img className="icon-nav-img" src="holder.js/171x180" alt="" />
-                <h6>frist Name</h6>
-                <hr className="user-dropdown-divider  p-0" />
-              </div>
-              <NavLink to="/Profile" className="side-bar-item">
-                <AiOutlineUser className="side-bar-item-icon" />
-                <span className="side-bar-item-caption">Profile</span>
-              </NavLink>
-              <a className="side-bar-item">
-                <AiOutlineLogout className="side-bar-item-icon" />
-                <span className="side-bar-item-caption">Logout</span>
-              </a>
-            </div>
+            <h1 style={{ fontSize: "20px", margin: 0 }}>Task Manager</h1>
+          </Navbar.Brand>
+          <div style={{ position: "relative" }}>
+            <img
+              src={cat}
+              alt="User"
+              onClick={toggleDropdown}
+              style={{
+                width: "50px",
+                height: "50px",
+                borderRadius: "50%",
+                cursor: "pointer",
+              }}
+            />
           </div>
-        </div>
-      </Container>
-    </Navbar>
+        </Container>
+      </Navbar>
+
+      {/* Sidebar */}
+      <Offcanvas show={showSidebar} onHide={toggleSidebar} placement="start">
+        <Offcanvas.Header closeButton>
+          <Offcanvas.Title>Menu</Offcanvas.Title>
+        </Offcanvas.Header>
+        <Offcanvas.Body>
+          <NavLink
+            to="/"
+            className="d-block mb-3 text-decoration-none text-dark"
+          >
+            <BsListNested className="me-2" /> Dashboard
+          </NavLink>
+          <NavLink
+            to="/Create"
+            className="d-block mb-3 text-decoration-none text-dark"
+          >
+            <AiOutlineEdit className="me-2" /> Create New
+          </NavLink>
+          <NavLink
+            to="/Progress"
+            className="d-block mb-3 text-decoration-none text-dark"
+          >
+            <BsHourglass className="me-2" /> In Progress
+          </NavLink>
+          <NavLink
+            to="/Completed"
+            className="d-block mb-3 text-decoration-none text-dark"
+          >
+            <AiOutlineCheckCircle className="me-2" /> Completed
+          </NavLink>
+          <NavLink
+            to="/Canceled"
+            className="d-block mb-3 text-decoration-none text-dark"
+          >
+            <MdOutlineCancelPresentation className="me-2" /> Canceled
+          </NavLink>
+        </Offcanvas.Body>
+      </Offcanvas>
+
+      {/* Dropdown */}
+      <Modal show={showDropdown} onHide={toggleDropdown} centered>
+        <Modal.Header>
+          <Modal.Title>User Info</Modal.Title>
+          <AiOutlineClose
+            style={{ cursor: "pointer", color: "red", fontSize: "20px" }}
+            onClick={toggleDropdown}
+          />
+        </Modal.Header>
+        <Modal.Body className="text-center">
+          <img
+            src={cat}
+            alt="User"
+            style={{
+              width: "80px",
+              height: "80px",
+              borderRadius: "50%",
+              marginBottom: "10px",
+            }}
+          />
+          <h6>First Name</h6>
+          <hr />
+          <NavLink
+            to="/Profile"
+            className="d-block mb-2 text-decoration-none text-dark"
+          >
+            <AiOutlineUser className="me-2" /> Profile
+          </NavLink>
+          <Button
+            variant="outline-danger"
+            className="w-100"
+            onClick={() => alert("Logged Out")}
+          >
+            <AiOutlineLogout className="me-2" /> Logout
+          </Button>
+        </Modal.Body>
+      </Modal>
+
+      {/* Main Content */}
+      <div style={{ marginTop: "70px", padding: "20px" }}>{props.children}</div>
+    </>
   );
 };
 
