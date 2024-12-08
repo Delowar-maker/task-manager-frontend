@@ -10,6 +10,7 @@ import {
 } from "react-icons/ai";
 import { BsHourglass, BsListNested } from "react-icons/bs";
 import { MdOutlineCancelPresentation } from "react-icons/md";
+import { RiDashboardLine } from "react-icons/ri";
 import { NavLink } from "react-router-dom";
 import cat from "../../assets/images/cat.jpeg";
 
@@ -62,13 +63,19 @@ const MasterLayout = (props) => {
             to="/"
             className="d-block mb-3 text-decoration-none text-dark"
           >
-            <BsListNested className="me-2" /> Dashboard
+            <RiDashboardLine className="me-2" /> Dashboard
           </NavLink>
           <NavLink
             to="/Create"
             className="d-block mb-3 text-decoration-none text-dark"
           >
             <AiOutlineEdit className="me-2" /> Create New
+          </NavLink>
+          <NavLink
+            to="/All"
+            className="d-block mb-3 text-decoration-none text-dark"
+          >
+            <BsListNested className="me-2" /> New Task
           </NavLink>
           <NavLink
             to="/Progress"

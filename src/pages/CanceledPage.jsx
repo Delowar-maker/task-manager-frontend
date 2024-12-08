@@ -1,5 +1,11 @@
+import MasterLayout from "../components/masterLayout/MasterLayout";
+
 const CanceledPage = () => {
-  return <div></div>;
+  return (
+    <MasterLayout>
+      <h1>Canceled page</h1>
+    </MasterLayout>
+  );
 };
 
 export default CanceledPage;

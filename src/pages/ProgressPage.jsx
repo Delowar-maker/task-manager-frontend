@@ -1,5 +1,11 @@
+import MasterLayout from "../components/masterLayout/MasterLayout";
+
 const ProgressPage = () => {
-  return <div></div>;
+  return (
+    <MasterLayout>
+      <h1>In Progress page</h1>
+    </MasterLayout>
+  );
 };
 
 export default ProgressPage;
