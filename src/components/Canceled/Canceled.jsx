@@ -1,5 +1,9 @@
 const Canceled = () => {
-  return <div></div>;
+  return (
+    <div>
+      <h1>Canceled</h1>
+    </div>
+  );
 };
 
 export default Canceled;

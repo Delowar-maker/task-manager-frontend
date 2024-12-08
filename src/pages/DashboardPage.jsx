@@ -1,9 +1,15 @@
+import { Suspense, lazy } from "react";
+const Dashboard = lazy(() => import("../components/Dashboard/Dashboard"));
+
+import LazyLoader from "../components/masterLayout/LazyLoader";
 import MasterLayout from "../components/masterLayout/MasterLayout";
 
 const DashboardPage = () => {
   return (
     <MasterLayout>
-      <h1>Dashboard page</h1>
+      <Suspense fallback={<LazyLoader />}>
+        <Dashboard />
+      </Suspense>
     </MasterLayout>
   );
 };

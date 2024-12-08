@@ -1,5 +1,13 @@
+import { Suspense, lazy } from "react";
+import LazyLoader from "../components/masterLayout/LazyLoader";
+const Forgetpass = lazy(() => import("../components/Forgetpass/Forgetpass"));
+
 const ForgetpassPage = () => {
-  return <div></div>;
+  return (
+    <Suspense fallback={<LazyLoader />}>
+      <Forgetpass />
+    </Suspense>
+  );
 };
 
 export default ForgetpassPage;

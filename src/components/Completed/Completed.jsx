@@ -1,5 +1,9 @@
 const Completed = () => {
-  return <div></div>;
+  return (
+    <div>
+      <h1>Completed</h1>
+    </div>
+  );
 };
 
 export default Completed;

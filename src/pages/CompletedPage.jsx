@@ -1,9 +1,15 @@
+import { Suspense, lazy } from "react";
+import LazyLoader from "../components/masterLayout/LazyLoader";
 import MasterLayout from "../components/masterLayout/MasterLayout";
+
+const Completed = lazy(() => import("../components/Completed/Completed"));
 
 const CompletedPage = () => {
   return (
     <MasterLayout>
-      <h1>Completed page</h1>
+      <Suspense fallback={<LazyLoader />}>
+        <Completed />
+      </Suspense>
     </MasterLayout>
   );
 };
