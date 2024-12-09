@@ -4,11 +4,12 @@ import CanceledPage from "./pages/CanceledPage.jsx";
 import CompletedPage from "./pages/CompletedPage.jsx";
 import CreatePage from "./pages/CreatePage.jsx";
 import DashboardPage from "./pages/DashboardPage.jsx";
+import LoginPage from "./pages/LoginPage.jsx";
 import NewPage from "./pages/NewPage.jsx";
-import NotFound from "./pages/NotFound.jsx";
+import NotFoundPage from "./pages/NotFoundPage.jsx";
 import ProfilePage from "./pages/ProfilePage.jsx";
 import ProgressPage from "./pages/ProgressPage.jsx";
-
+import RegistrationPage from "./pages/RegistrationPage.jsx";
 const App = () => {
   return (
     <>
@@ -21,7 +22,9 @@ const App = () => {
           <Route exact path="/Completed" element={<CompletedPage />} />
           <Route exact path="/Canceled" element={<CanceledPage />} />
           <Route exact path="/Profile" element={<ProfilePage />} />
-          <Route path="*" element={<NotFound />} />
+          <Route exact path="/login" element={<LoginPage />} />
+          <Route exact path="/Registration" element={<RegistrationPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>
       <FullScreenLoader />
