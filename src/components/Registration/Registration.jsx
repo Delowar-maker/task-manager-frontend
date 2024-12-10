@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import {
   Button,
   Card,
@@ -10,6 +11,21 @@ import {
 import { FaEnvelope, FaLock, FaPhoneAlt, FaUser } from "react-icons/fa";
 
 const Registration = () => {
+  let emailRef,
+    firstNameRef,
+    lastNameRef,
+    mobileRef,
+    passwordRef = useRef();
+
+  const onRegistration = (e) => {
+    e.preventDefault();
+    const email = emailRef.value;
+    const password = passwordRef.value;
+    const firstName = firstNameRef.value;
+    const lastName = lastNameRef.value;
+    const mobile = mobileRef.value;
+    console.log(email, password, firstName, lastName, mobile);
+  };
   return (
     <div className="">
       <Container
@@ -32,6 +48,7 @@ const Registration = () => {
                         <FaEnvelope className="text-muted" />
                       </InputGroup.Text>
                       <Form.Control
+                        ref={(input) => (emailRef = input)}
                         type="email"
                         placeholder="Enter your email"
                         required
@@ -47,6 +64,7 @@ const Registration = () => {
                         <FaUser className="text-muted" />
                       </InputGroup.Text>
                       <Form.Control
+                        ref={(input) => (firstNameRef = input)}
                         type="text"
                         placeholder="Enter your first name"
                         required
@@ -62,6 +80,7 @@ const Registration = () => {
                         <FaUser className="text-muted" />
                       </InputGroup.Text>
                       <Form.Control
+                        ref={(input) => (lastNameRef = input)}
                         type="text"
                         placeholder="Enter your last name"
                         required
@@ -77,6 +96,7 @@ const Registration = () => {
                         <FaPhoneAlt className="text-muted" />
                       </InputGroup.Text>
                       <Form.Control
+                        ref={(input) => (mobileRef = input)}
                         type="tel"
                         placeholder="Enter your mobile number"
                         required
@@ -92,6 +112,7 @@ const Registration = () => {
                         <FaLock className="text-muted" />
                       </InputGroup.Text>
                       <Form.Control
+                        ref={(input) => (passwordRef = input)}
                         type="password"
                         placeholder="Create a password"
                         required
@@ -101,6 +122,7 @@ const Registration = () => {
 
                   {/* Submit Button */}
                   <Button
+                    onClick={onRegistration}
                     variant="primary"
                     type="submit"
                     className="w-100 py-2 fw-bold rounded-pill"
