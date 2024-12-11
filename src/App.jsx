@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
 import FullScreenLoader from "./components/masterLayout/FullScreenLoader.jsx";
 import CanceledPage from "./pages/CanceledPage.jsx";
 import CompletedPage from "./pages/CompletedPage.jsx";

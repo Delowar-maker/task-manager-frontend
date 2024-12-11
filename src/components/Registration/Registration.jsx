@@ -9,10 +9,17 @@ import {
   Row,
 } from "react-bootstrap";
 import { FaEnvelope, FaLock, FaPhoneAlt, FaUser } from "react-icons/fa";
+import { RegistrationRequest } from "../../APIRequest/APIRequest";
+import {
+  ErrorToast,
+  IsEmail,
+  IsEmpty,
+  IsMobile,
+} from "../../helper/FormHelper";
 
 const Registration = () => {
   let emailRef,
-    firstNameRef,
+    fastNameRef,
     lastNameRef,
     mobileRef,
     passwordRef = useRef();
@@ -21,10 +28,28 @@ const Registration = () => {
     e.preventDefault();
     const email = emailRef.value;
     const password = passwordRef.value;
-    const firstName = firstNameRef.value;
+    const fastName = fastNameRef.value;
     const lastName = lastNameRef.value;
     const mobile = mobileRef.value;
-    console.log(email, password, firstName, lastName, mobile);
+    if (IsEmail(email)) {
+      ErrorToast("Valid Email Address Required !");
+    } else if (IsEmpty(fastName)) {
+      ErrorToast("First Name Required !");
+    } else if (IsEmpty(lastName)) {
+      ErrorToast("Last Name Required !");
+    } else if (!IsMobile(mobile)) {
+      ErrorToast("Valid Mobile  Required !");
+    } else if (IsEmpty(password)) {
+      ErrorToast("Password Required !");
+    } else {
+      RegistrationRequest(email, fastName, lastName, mobile, password, "").then(
+        (result) => {
+          if (result === true) {
+          }
+        }
+      );
+    }
+    console.log(email, password, fastName, lastName, mobile);
   };
   return (
     <div className="">
@@ -57,14 +82,14 @@ const Registration = () => {
                   </Form.Group>
 
                   {/* First Name Field */}
-                  <Form.Group className="mb-3" controlId="formFirstName">
+                  <Form.Group className="mb-3" controlId="formfastName">
                     <Form.Label>First Name</Form.Label>
                     <InputGroup>
                       <InputGroup.Text>
                         <FaUser className="text-muted" />
                       </InputGroup.Text>
                       <Form.Control
-                        ref={(input) => (firstNameRef = input)}
+                        ref={(input) => (fastNameRef = input)}
                         type="text"
                         placeholder="Enter your first name"
                         required
