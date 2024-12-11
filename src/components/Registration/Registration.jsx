@@ -9,6 +9,7 @@ import {
   Row,
 } from "react-bootstrap";
 import { FaEnvelope, FaLock, FaPhoneAlt, FaUser } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import { RegistrationRequest } from "../../APIRequest/APIRequest";
 import {
   ErrorToast,
@@ -23,6 +24,8 @@ const Registration = () => {
     lastNameRef,
     mobileRef,
     passwordRef = useRef();
+
+  const navigate = useNavigate();
 
   const onRegistration = (e) => {
     e.preventDefault();
@@ -45,6 +48,7 @@ const Registration = () => {
       RegistrationRequest(email, fastName, lastName, mobile, password, "").then(
         (result) => {
           if (result === true) {
+            navigate("/login");
           }
         }
       );
