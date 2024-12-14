@@ -34,7 +34,7 @@ export function NewTaskRequest(title, description) {
         }
 
     }).catch((err) => {
-        ErrorToast("Something Went Wrong")
+        ErrorToast(`${err}"Something Went Wrong"`)
         store.dispatch(HideLoader())
         return false;
     })
@@ -58,7 +58,7 @@ export function LoginRequest(email, password) {
             return false;
         }
     }).catch((err) => {
-        ErrorToast("Something Went Wrong")
+        ErrorToast(`${err}"Something Went Wrong"`)
         store.dispatch(HideLoader())
         return false;
     });
@@ -92,7 +92,7 @@ export function RegistrationRequest(email, firstName, lastName, mobile, password
         }
     }).catch((err) => {
         store.dispatch(HideLoader())
-        ErrorToast("Something Went Wrong")
+        ErrorToast(`${err}"Something Went Wrong"`)
         return false;
     })
 }
@@ -122,7 +122,7 @@ export function TaskListByStatus(Status) {
             ErrorToast("Something Went Wrong")
         }
     }).catch((err) => {
-        ErrorToast("Something Went Wrong")
+        ErrorToast(`${err}"Something Went Wrong"`)
         store.dispatch(HideLoader())
     });
 }
