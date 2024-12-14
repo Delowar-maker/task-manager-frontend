@@ -5,6 +5,7 @@ import axios from "axios";
 import { ErrorToast, SuccessToast } from "../helper/FormHelper";
 import { getToken, setToken, setUserDetails } from "../helper/SessionHelper";
 import { HideLoader, ShowLoader } from "../redux/state-slice/settings-slice";
+import { SetCanceledTask, SetCompletedTask, SetNewTask, SetProgressTask } from "../redux/state-slice/task-slice";
 import store from "../redux/store/store";
 
 
@@ -33,7 +34,7 @@ export function NewTaskRequest(title, description) {
         }
 
     }).catch((err) => {
-        ErrorToast(`${err}"Something Went Wrong"`)
+        ErrorToast("Something Went Wrong")
         store.dispatch(HideLoader())
         return false;
     })
@@ -57,7 +58,7 @@ export function LoginRequest(email, password) {
             return false;
         }
     }).catch((err) => {
-        ErrorToast(`${err}"Something Went Wrong"`)
+        ErrorToast("Something Went Wrong")
         store.dispatch(HideLoader())
         return false;
     });
@@ -91,7 +92,38 @@ export function RegistrationRequest(email, firstName, lastName, mobile, password
         }
     }).catch((err) => {
         store.dispatch(HideLoader())
-        ErrorToast(`${err}"Something Went Wrong"`)
+        ErrorToast("Something Went Wrong")
         return false;
     })
 }
+
+
+export function TaskListByStatus(Status) {
+    store.dispatch(ShowLoader())
+    let URL = BaseURL + "/listTaskByStatus/" + Status;
+    axios.get(URL, AxiosHeader).then((res) => {
+        store.dispatch(HideLoader())
+        if (res.status === 200) {
+            if (Status === "New") {
+                store.dispatch(SetNewTask(res.data['data']))
+            }
+            else if (Status === "Completed") {
+                store.dispatch(SetCompletedTask(res.data['data']))
+            }
+            else if (Status === "Canceled") {
+                store.dispatch(SetCanceledTask(res.data['data']))
+            }
+            else if (Status === "Progress") {
+                // debugger;
+                store.dispatch(SetProgressTask(res.data['data']))
+            }
+        }
+        else {
+            ErrorToast("Something Went Wrong")
+        }
+    }).catch((err) => {
+        ErrorToast("Something Went Wrong")
+        store.dispatch(HideLoader())
+    });
+}
+
