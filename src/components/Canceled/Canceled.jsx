@@ -7,6 +7,7 @@ import {
 } from "react-icons/ai";
 import { useSelector } from "react-redux";
 import { TaskListByStatus } from "../../APIRequest/APIRequest";
+import { DeleteToDO } from "../../helper/DeleteAlart";
 const Canceled = () => {
   useEffect(() => {
     TaskListByStatus("Canceled");
@@ -46,7 +47,10 @@ const Canceled = () => {
                     <a className="icon-nav text-primary mx-1">
                       <AiOutlineEdit />
                     </a>
-                    <a className="icon-nav text-danger mx-1">
+                    <a
+                      onClick={() => DeleteToDO(item._id)}
+                      className="icon-nav text-danger mx-1"
+                    >
                       <AiOutlineDelete />
                     </a>
                     <a className="badge float-end bg-danger">{item.status}</a>

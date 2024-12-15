@@ -5,6 +5,7 @@ import axios from "axios";
 import { ErrorToast, SuccessToast } from "../helper/FormHelper";
 import { getToken, setToken, setUserDetails } from "../helper/SessionHelper";
 import { HideLoader, ShowLoader } from "../redux/state-slice/settings-slice";
+import { SetSummary } from "../redux/state-slice/summary-slice";
 import { SetCanceledTask, SetCompletedTask, SetNewTask, SetProgressTask } from "../redux/state-slice/task-slice";
 import store from "../redux/store/store";
 
@@ -127,3 +128,20 @@ export function TaskListByStatus(Status) {
     });
 }
 
+
+export function SummaryRequest() {
+    store.dispatch(ShowLoader())
+    let URL = BaseURL + "/taskStatusCount";
+    axios.get(URL, AxiosHeader).then((res) => {
+        store.dispatch(HideLoader())
+        if (res.status === 200) {
+            store.dispatch(SetSummary(res.data['data']))
+        }
+        else {
+            ErrorToast("Something Went Wrong")
+        }
+    }).catch((err) => {
+        ErrorToast(`${err}"Something Went Wrong"`)
+        store.dispatch(HideLoader())
+    });
+}
