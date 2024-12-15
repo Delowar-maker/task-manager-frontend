@@ -13,6 +13,9 @@ const Progress = () => {
     TaskListByStatus("Progress");
   }, []);
   const ProgressList = useSelector((state) => state.task.Progress);
+  const DeleteItem = (id) => {
+    DeleteToDO(id);
+  };
   return (
     <>
       <Container fluid={true} className="content-body">
@@ -47,7 +50,7 @@ const Progress = () => {
                       <AiOutlineEdit />
                     </a>
                     <a
-                      onClick={() => DeleteToDO(item._id)}
+                      onClick={DeleteItem.bind(this, item._id)}
                       className="icon-nav text-danger mx-1"
                     >
                       <AiOutlineDelete />

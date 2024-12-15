@@ -145,3 +145,24 @@ export function SummaryRequest() {
         store.dispatch(HideLoader())
     });
 }
+
+
+export function DeleteRequest(id) {
+    store.dispatch(ShowLoader())
+    let URL = BaseURL + "/deleteTask/" + id;
+    return axios.get(URL, AxiosHeader).then((res) => {
+        store.dispatch(HideLoader())
+        if (res.status === 200) {
+            SuccessToast("Delete Successful")
+            return true;
+        }
+        else {
+            ErrorToast("Something Went Wrong")
+            return false;
+        }
+    }).catch((err) => {
+        ErrorToast(`${err}"Something Went Wrong"`)
+        store.dispatch(HideLoader())
+        return false;
+    });
+}

@@ -14,6 +14,10 @@ const Canceled = () => {
   }, []);
 
   const CanceledList = useSelector((state) => state.task.Canceled);
+
+  const DeleteItem = (id) => {
+    DeleteToDO(id);
+  };
   return (
     <>
       <Container fluid={true} className="content-body">
@@ -48,7 +52,7 @@ const Canceled = () => {
                       <AiOutlineEdit />
                     </a>
                     <a
-                      onClick={() => DeleteToDO(item._id)}
+                      onClick={DeleteItem.bind(this, item._id)}
                       className="icon-nav text-danger mx-1"
                     >
                       <AiOutlineDelete />

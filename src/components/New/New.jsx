@@ -13,6 +13,9 @@ const New = () => {
     TaskListByStatus("New");
   }, []);
   const NewList = useSelector((state) => state.task.New);
+  const DeleteItem = (id) => {
+    DeleteToDO(id);
+  };
   return (
     <>
       <Container fluid={true} className="content-body">
@@ -47,7 +50,7 @@ const New = () => {
                       <AiOutlineEdit />
                     </a>
                     <a
-                      onClick={() => DeleteToDO(item._id)}
+                      onClick={DeleteItem.bind(this, item._id)}
                       className="icon-nav text-danger mx-1"
                     >
                       <AiOutlineDelete />
