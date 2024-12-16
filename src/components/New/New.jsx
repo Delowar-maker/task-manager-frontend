@@ -8,14 +8,28 @@ import {
 import { useSelector } from "react-redux";
 import { TaskListByStatus } from "../../APIRequest/APIRequest";
 import { DeleteToDO } from "../../helper/DeleteAlart";
+import { UpdateToDO } from "../../helper/UpdateAlert";
 const New = () => {
   useEffect(() => {
     TaskListByStatus("New");
   }, []);
   const NewList = useSelector((state) => state.task.New);
   const DeleteItem = (id) => {
-    DeleteToDO(id);
+    DeleteToDO(id).then((deleteResult) => {
+      if (deleteResult === true) {
+        TaskListByStatus("New");
+      }
+    });
   };
+
+  const StatusChangeItem = (id, status) => {
+    UpdateToDO(id, status).then((result) => {
+      if (result === true) {
+        TaskListByStatus("New");
+      }
+    });
+  };
+
   return (
     <>
       <Container fluid={true} className="content-body">
@@ -46,7 +60,14 @@ const New = () => {
                   <p className="animated fadeInUp">{item.description}</p>
                   <p className="m-0 animated fadeInUp p-0">
                     <AiOutlineCalendar /> {item.createdDate}
-                    <a className="icon-nav text-primary mx-1">
+                    <a
+                      onClick={StatusChangeItem.bind(
+                        this,
+                        item._id,
+                        item.status
+                      )}
+                      className="icon-nav text-primary mx-1"
+                    >
                       <AiOutlineEdit />
                     </a>
                     <a

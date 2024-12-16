@@ -12,7 +12,7 @@ import { BsHourglass, BsListNested } from "react-icons/bs";
 import { MdOutlineCancelPresentation } from "react-icons/md";
 import { RiDashboardLine } from "react-icons/ri";
 import { NavLink } from "react-router-dom";
-import cat from "../../assets/images/cat.jpeg";
+import { getUserDetails, removeSessions } from "../../helper/SessionHelper";
 
 const MasterLayout = (props) => {
   const [showSidebar, setShowSidebar] = useState(false);
@@ -20,6 +20,9 @@ const MasterLayout = (props) => {
 
   const toggleSidebar = () => setShowSidebar((prev) => !prev);
   const toggleDropdown = () => setShowDropdown((prev) => !prev);
+  const onLogout = () => {
+    removeSessions();
+  };
 
   return (
     <>
@@ -39,7 +42,8 @@ const MasterLayout = (props) => {
           </Navbar.Brand>
           <div style={{ position: "relative" }}>
             <img
-              src={cat}
+              src={getUserDetails()["photo"]}
+              // src={cat}
               alt="User"
               onClick={toggleDropdown}
               style={{
@@ -109,7 +113,7 @@ const MasterLayout = (props) => {
         </Modal.Header>
         <Modal.Body className="text-center">
           <img
-            src={cat}
+            src={getUserDetails()["photo"]}
             alt="User"
             style={{
               width: "80px",
@@ -118,7 +122,8 @@ const MasterLayout = (props) => {
               marginBottom: "10px",
             }}
           />
-          <h6>First Name</h6>
+          {/* <h6>First Name</h6> */}
+          <h6>{getUserDetails()["firstName"]}</h6>
           <hr />
           <NavLink
             to="/Profile"
@@ -126,11 +131,7 @@ const MasterLayout = (props) => {
           >
             <AiOutlineUser className="me-2" /> Profile
           </NavLink>
-          <Button
-            variant="outline-danger"
-            className="w-100"
-            onClick={() => alert("Logged Out")}
-          >
+          <Button variant="outline-danger" className="w-100" onClick={onLogout}>
             <AiOutlineLogout className="me-2" /> Logout
           </Button>
         </Modal.Body>
