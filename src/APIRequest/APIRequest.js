@@ -4,6 +4,7 @@
 import axios from "axios";
 import { ErrorToast, SuccessToast } from "../helper/FormHelper";
 import { getToken, setToken, setUserDetails } from "../helper/SessionHelper";
+import { SetProfile } from "../redux/state-slice/profile-slice";
 import { HideLoader, ShowLoader } from "../redux/state-slice/settings-slice";
 import { SetSummary } from "../redux/state-slice/summary-slice";
 import { SetCanceledTask, SetCompletedTask, SetNewTask, SetProgressTask } from "../redux/state-slice/task-slice";
@@ -185,5 +186,26 @@ export function UpdateStatusRequest(id, status) {
         ErrorToast("Something Went Wrong")
         store.dispatch(HideLoader())
         return false;
+    });
+}
+
+
+// prifile Details
+
+
+export function GetProfileDetails(){
+    store.dispatch(ShowLoader())
+    let URL=BaseURL+"/profileDetails";
+    axios.get(URL,AxiosHeader).then((res)=>{
+        store.dispatch(HideLoader())
+        if(res.status===200){
+            store.dispatch(SetProfile(res.data['data'][0]))
+        }
+        else{
+            ErrorToast("Something Went Wrong")
+        }
+    }).catch((err)=>{
+        ErrorToast("Something Went Wrong")
+        store.dispatch(HideLoader())
     });
 }
