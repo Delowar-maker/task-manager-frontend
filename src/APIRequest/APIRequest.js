@@ -209,3 +209,32 @@ export function GetProfileDetails(){
         store.dispatch(HideLoader())
     });
 }
+
+export function ProfileUpdateRequest(email,firstName,lastName,mobile,password,photo){
+
+    store.dispatch(ShowLoader())
+
+    let URL=BaseURL+"/profileUpdate";
+
+    let PostBody={email:email,firstName:firstName,lastName:lastName,mobile:mobile,password:password,photo:photo}
+    let UserDetails={email:email,firstName:firstName,lastName:lastName,mobile:mobile,photo:photo}
+
+    return axios.post(URL,PostBody,AxiosHeader).then((res)=>{
+        store.dispatch(HideLoader())
+        if(res.status===200){
+
+            SuccessToast("Profile Update Success")
+            setUserDetails(UserDetails)
+
+            return true;
+        }
+        else{
+            ErrorToast("Something Went Wrong")
+            return  false;
+        }
+    }).catch((err)=>{
+        ErrorToast("Something Went Wrong")
+        store.dispatch(HideLoader())
+        return false;
+    });
+}
